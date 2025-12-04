@@ -31,7 +31,7 @@ class Block:
         """
         target = '0' * difficulty
         # Your code here
-        while self.hash[:difficulty] != target or self.hash[difficulty]==0 :##要求一定是只有前四位是0，如果有超过四位是0也不算
+        while self.hash[:difficulty] != target:
             self.nonce += 1
             self.hash = self.calculate_hash()
         if self.index!= 0:
@@ -84,9 +84,9 @@ class Blockchain:
 # --- 测试用例 (Test Runner) ---
 # 不要修改下面的运行逻辑，你可以修改 my_blockchain.difficulty 来体验挖矿速度的变化
 
-def operation_mining(Blockchain,data):
+def operation_mining(my_blockchain,data):
     if my_blockchain.is_chain_valid():
-            new_block = Block(len(my_blockchain.chain),time.time(),data,my_blockchain.get_latest_block().hash)
+            new_block = Block(len(my_blockchain.chain),time.time(),data,"")
             my_blockchain.add_block(new_block)
             return True
     else:
